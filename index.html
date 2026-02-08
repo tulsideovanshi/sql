@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Propose Day ❤️</title>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="romantic-music.mp3" type="audio/mp3" />
+  </audio>
+
+  <style>
+    * { box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #ff8fa3, #ffb3c6);
+      overflow: hidden;
+    }
+
+    /* Heart Rain */
+    .heart {
+      position: fixed;
+      top: -10px;
+      color: rgba(255,255,255,0.7);
+      animation: fall linear infinite;
+      font-size: 18px;
+      pointer-events: none;
+    }
+    @keyframes fall { to { transform: translateY(110vh); } }
+
+    /* Typewriter */
+    .typewriter {
+      border-right: 2px solid #fff;
+      padding-right: 6px;
+      animation: blink 0.8s infinite;
+    }
+    @keyframes blink { 50% { border-color: transparent; } }
+
+    .slide {
+      display: none;
+      height: 100vh;
+      width: 100vw;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+    .slide.active { display: flex; }
+
+    h1 { color: #fff; font-size: 2.6rem; margin-bottom: 18px; }
+    p { color: #fff; font-size: 1.15rem; max-width: 680px; }
+
+    button {
+      padding: 12px 28px;
+      font-size: 1.05rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .yes { background: #ff2f68; color: white; }
+    .no { background: #555; color: white; position: absolute; }
+
+    .heart-btn { background: #fff; color: #ff2f68; }
+    .back-btn { background: rgba(255,255,255,0.9); color: #ff2f68; }
+    .back-btn:hover { animation: pulse 1.2s infinite; }
+
+    .options button { background: #fff; color: #ff2f68; width: 220px; }
+
+    .letter {
+      background: rgba(255,255,255,0.95);
+      color: #ff2f68;
+      padding: 25px;
+      border-radius: 20px;
+      max-width: 620px;
+      font-size: 1.05rem;
+    }
+
+    /* Lock screen */
+    .lock-screen {
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(12px);
+      padding: 40px 30px;
+      border-radius: 30px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      text-align: center;
+    }
+
+    .lock-time { font-size: 3.2rem; color: #fff; font-weight: bold; }
+    .lock-date { color: #fff; opacity: 0.9; }
+    .lock-name { color: #fff; font-size: 1rem; opacity: 0.9; margin-top: 4px; }
+
+    .lock-heart { font-size: 2.5rem; margin: 15px 0; }
+    .lock-heart.vibrate { animation: pulse 1.6s infinite, vibrate 0.15s infinite; }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+    @keyframes vibrate {
+      0% { transform: translate(0); }
+      25% { transform: translate(1px, -1px); }
+      50% { transform: translate(-1px, 1px); }
+      75% { transform: translate(1px, 1px); }
+      100% { transform: translate(0); }
+    }
+
+    .forever-text { font-size: 1.25rem; margin-top: 20px; display: none; color:#fff; }
+  </style>
+</head>
+<body>
+
+<!-- Slide 1 -->
+<div class="slide active" id="slide1">
+  <h1>Will you be mine, <span class="typewriter" id="nameType"></span> ?</h1>
+  <div>
+    <button class="yes" id="yesBtn" onclick="startLove()">YES 😍</button>
+    <button class="no" id="noBtn">NO 🙄</button>
+  </div>
+  <p id="noMsg" style="display:none; margin-top:40px; font-size:1.3rem;">
+    NO? 😏<br>
+    Arey MR. 😌❤️ itna bhi attitude allowed nahi hai.<br>
+    No ka option toh system mein hi nahi hai 💖
+  </p>
+</div>
+
+<!-- Slide 2 -->
+<div class="slide" id="slide2">
+  <h1>Happy Propose Day Baby ❤️</h1>
+  <p>
+    Suno MR. 😌❤️…<br>
+    Tum meri aadat bhi ho aur meri zarurat bhi 🥹<br>
+    Tumhare saath sab simple cheezein bhi special lagti hain 💖<br>
+    With you, every moment feels like forever.
+  </p>
+  <button class="heart-btn" onclick="goToSlide(3)">See My Heart 💘</button>
+</div>
+
+<!-- Slide 3 -->
+<div class="slide" id="slide3">
+  <h1>Something Only For You 💝 MR. 😌❤️</h1>
+  <div class="options">
+    <button onclick="goToSlide(4)">My Heart 💌</button>
+    <button onclick="goToSlide(5)">Why You? 🥹❤️</button>
+    <button onclick="goToSlide(6)">Promise Corner 🤞❤️</button>
+  </div>
+</div>
+
+<!-- My Heart -->
+<div class="slide" id="slide4">
+  <h1>My Heart 💌 MR. 😌❤️</h1>
+  <div class="letter">
+    My Love,<br><br>
+    Tumhari ek smile meri poori duniya theek kar deti hai.
+    Tum gussa ho toh bhi cute lagte ho 😌❤️<br><br>
+    I don’t want perfect moments,
+    I want imperfect moments with YOU.<br><br>
+    Forever yours 💖
+  </div>
+  <button class="back-btn" onclick="goToSlide(3)">⬅ Back</button>
+</div>
+
+<!-- Why You -->
+<div class="slide" id="slide5">
+  <h1>Why Only You? 🥹❤️</h1>
+  <p>
+    Because you feel like home.<br>
+    Because your voice calms my chaos.<br>
+    Because tum ho toh sab kuch possible lagta hai MR. 😌❤️<br><br>
+    Aur honestly… I choose you. Every single day. 💘
+  <br><br><em style="opacity:0.9;">Unlocked once. Locked forever. 🔐❤️</em></p>
+    <button class="back-btn" onclick="goToSlide(3)">⬅ Back</button>
+</div>
+
+<!-- Promise Corner -->
+<div class="slide" id="slide6">
+  <h1>Promise Corner 🤞❤️</h1>
+  <p>
+    I promise to hold your hand in public and your heart in private 🥹<br>
+    Main tumhare saath hasungi, ro dungi, lad bhi lungi…<br>
+    But kabhi tumhara saath nahi chhodungi MR. 😌❤️
+  </p>
+  <button class="heart-btn" onclick="goToSlide(7)">Forever ♾️</button>
+</div>
+
+<!-- Forever Lock Screen -->
+<div class="slide" id="slide7">
+  <div class="lock-screen">
+    <div class="lock-time">11:11</div>
+    <div class="lock-date">The moment we first talked 💖</div>
+    <div class="lock-name">MR. 😌❤️</div>
+    <div class="lock-heart vibrate">❤️</div>
+    <p>Swipe your heart to unlock 😌❤️</p>
+    <button class="heart-btn" onclick="showForeverText();heartPop()">Choose Forever ♾️</button>
+    <audio id="clickSound"><source src="click.mp3" type="audio/mp3" /></audio>
+    <p class="forever-text" id="foreverText">
+      Aaj nahi toh kal…<br>
+      Kal nahi toh poori zindagi 💖<br><br>
+      Main tumhari hoon MR. 😌❤️<br>
+      Aur tum sirf mere ♾️<br><br>
+      Bas itna sa vaada hai…<br>
+      Kabhi haath chhodega nahi 🥹❤️<br><br>
+      <em style="opacity:0.9;">Unlocked once. Locked forever. 🔐❤️</em>
+    </p>
+    <button class="back-btn" onclick="goToSlide(6)">⬅ Back</button>
+  </div>
+</div>
+
+<script>
+  /* Typewriter */
+  const nameText = "MR. 😌❤️";
+  let index = 0;
+  const target = document.getElementById('nameType');
+  function typeName() {
+    if (index < nameText.length) {
+      target.innerHTML += nameText.charAt(index++);
+      setTimeout(typeName, 120);
+    }
+  }
+  typeName();
+
+  /* YES grow */
+  let scale = 1;
+  setInterval(() => {
+    const btn = document.getElementById('yesBtn');
+    if (btn) btn.style.transform = `scale(${scale += 0.02})`;
+  }, 900);
+
+  /* NO run away */
+  const noBtn = document.getElementById('noBtn');
+  const noMsg = document.getElementById('noMsg');
+  noBtn.addEventListener('mouseover', () => {
+    noBtn.style.left = Math.random() * 80 + 'vw';
+    noBtn.style.top = Math.random() * 80 + 'vh';
+    noMsg.style.display = 'block';
+  });
+
+  function goToSlide(n) {
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    document.getElementById('slide' + n).classList.add('active');
+  }
+
+  function startLove() {
+    document.getElementById('bgMusic').play();
+    goToSlide(2);
+  }
+
+  function showForeverText() {
+    document.getElementById('foreverText').style.display = 'block';
+  }
+
+  function heartPop(){
+    document.getElementById('clickSound').play();
+    const h=document.createElement('div');
+    h.innerHTML='💖';
+    h.style.position='fixed';
+    h.style.left='50%';
+    h.style.top='60%';
+    h.style.fontSize='2.2rem';
+    h.style.animation='pulse 1s forwards';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),1000);
+  }
+
+  /* Heart rain */
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (3 + Math.random() * 5) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 9000);
+  }, 300);
+</script>
+</body>
+</html>
